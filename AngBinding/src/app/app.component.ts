@@ -4,15 +4,32 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <h2>welcome {{title}}</h2>
-    <input [id] = "myId" type="text" value="name">
-    <input [disabled] = "isDisabled" type="text" value="name">
-    <input bind-disabled = "isDisabled" type="text" value="name">
+    <h2 class='text-success'>CodeEvolution</h2>
+    <h2 [class]='successClass'>CodeEvolution</h2>
+    <h2 [class.text-danger] ="hasError">CodeEvolution</h2>  
+    <h2 [ngClass] ="messageClasses">CodeEvolution</h2>  
 
     `,
-  styleUrls: ['./app.component.css']
+  styles: [`
+  .text-success {
+    color: green;
+  }
+  .text-danger {
+    color: red;
+  }
+  .text-special {
+    font-style: italic;
+  }
+  `]
 })
 export class AppComponent {
   title = 'AngBinding';
-  myId = "testId";
-  isDisabled = true;
+ public successClass= "text-success"
+ public hasError = true
+ public isSpecial = false
+ public messageClasses = {
+   "text-success": this.hasError,
+   "text-danger" : this.hasError,
+   "teaxt-special" : this.isSpecial
+ }
 }
